@@ -1,0 +1,15 @@
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\bin\Debug\WpfTimerBinding.exe.config
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\bin\Debug\WpfTimerBinding.exe
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\bin\Debug\WpfTimerBinding.pdb
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding.csproj.AssemblyReference.cache
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\MainWindow.g.cs
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\App.g.cs
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding_MarkupCompile.cache
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding_MarkupCompile.lref
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\MainWindow.baml
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding.g.resources
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding.Properties.Resources.resources
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding.csproj.GenerateResource.cache
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding.csproj.CoreCompileInputs.cache
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding.exe
+C:\Users\wooch\source\repos\WpfTimerBinding\WpfTimerBinding\obj\Debug\WpfTimerBinding.pdb
