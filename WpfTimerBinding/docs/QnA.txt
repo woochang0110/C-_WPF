@@ -1,0 +1,88 @@
+Q1. MainWindow.xaml.cs 안에 보면 바인딩할 대상인 View Model이 하나밖에 없으므로 Root View Model에 바로 해당 ViewModel을 넣어주고 있음.
+   -> 만약 여러개일 경우는 어떻게 되는지?
+    public partial class MainWindow : Window
+    {
+        private CounterViewModel _viewModel; // UI와 연결될 ViewModel 인스턴스
+
+        public MainWindow()
+        {
+            InitializeComponent();     // XAML에서 정의한 UI 요소 초기화
+            _viewModel = new CounterViewModel(); // ViewModel 생성
+            DataContext = _viewModel;           // 윈도우 전체 DataContext를 ViewModel로 설정
+                                                // → XAML에서 {Binding Number} 가 ViewModel.Number랑 연결됨
+        }
+    }
+
+WPF에서 DataContext는 원칙적으로 하나의 객체만을 가리켜요. 지금처럼 MainWindow에 DataContext = _viewModel; 하면, 윈도우 아래의 모든 컨트롤이 기본적으로 그 ViewModel을 바라보게 됩니다.
+
+하지만 현실적으로는 여러 개의 ViewModel을 동시에 다뤄야 할 경우가 많습니다.
+이럴 때 방법은 크게 3가지가 있습니다:
+
+A1. 하나의 Root ViewModel 안에 여러 ViewModel 포함
+
+        가장 흔한 방식입니다. "메인 ViewModel"을 만들고 그 안에 여러 개의 ViewModel을 프로퍼티로 들고 있게 합니다.
+
+        public class MainViewModel
+        {
+            public CounterViewModel CounterVM { get; }
+            public UserViewModel UserVM { get; }
+
+            public MainViewModel()
+            {
+                CounterVM = new CounterViewModel();
+                UserVM = new UserViewModel();
+            }
+        }
+
+
+        MainWindow.xaml.cs:
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            DataContext = new MainViewModel();
+        }
+
+
+        XAML에서 특정 ViewModel에 바인딩할 때:
+
+        <!-- CounterViewModel.Number -->
+        <TextBlock Text="{Binding CounterVM.Number}" />
+
+        <!-- UserViewModel.Name -->
+        <TextBlock Text="{Binding UserVM.Name}" />
+
+A2. 컨트롤별로 DataContext 따로 설정
+
+        윈도우 전체 DataContext는 하나이지만, 특정 컨트롤에 대해서만 별도의 DataContext를 줄 수도 있습니다.
+
+        <StackPanel>
+            <!-- CounterViewModel을 DataContext로 직접 지정 -->
+            <StackPanel DataContext="{Binding CounterVM}">
+                <TextBlock Text="{Binding Number}" />
+            </StackPanel>
+
+            <!-- UserViewModel을 DataContext로 직접 지정 -->
+            <StackPanel DataContext="{Binding UserVM}">
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </StackPanel>
+
+
+        이 경우 MainViewModel의 CounterVM, UserVM을 그대로 연결해줄 수 있죠.
+
+A3. 리소스 + StaticResource / DynamicResource 활용
+
+        ViewModel을 리소스로 등록해두고 필요한 곳에서 꺼내 씁니다.
+
+        <Window.Resources>
+            <local:CounterViewModel x:Key="CounterVM" />
+            <local:UserViewModel x:Key="UserVM" />
+        </Window.Resources>
+
+        <StackPanel>
+            <TextBlock Text="{Binding Number, Source={StaticResource CounterVM}}" />
+            <TextBlock Text="{Binding Name, Source={StaticResource UserVM}}" />
+        </StackPanel>
+
+**결론: 프로젝트 규모가 작을 경우 방법 2나 3을 사용하며, MVVM 패턴으로 큰 프로젝트를 할 때는 방법 1 (Root VM 안에 여러 VM 포함)**
