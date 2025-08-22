@@ -5,10 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTimerBinding"
         mc:Ignorable="d"
-        Title="WpfTimerBinding" Height="200" Width="300">
+        Title="WpfTimerBinding" Height="250" Width="300">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"> <!-- 세로 정렬 컨테이너 -->
-        <TextBlock Text="{Binding Number}" FontSize="48" HorizontalAlignment="Center"/>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <!-- Number 값이 ViewModel에서 UI로만 전달됨 -->
+        <TextBlock Text="{Binding Number, Mode=OneWay}"
+                   FontSize="48" HorizontalAlignment="Center"/>
+
+        <!-- TextBox는 InputNumber와 바인딩됨.
+             Enter를 눌러야만 ViewModel.InputNumber로 값이 적용됨 -->
+        <TextBox Text="{Binding InputNumber, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                 FontSize="24"
+                 HorizontalAlignment="Center"
+                 KeyDown="TextBox_KeyDown"
+                 Width="100"
+                 Margin="0,20,0,0"/>
+
+        <!-- 버튼들 -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
             <Button Content="Start" Width="80" Margin="5" Click="Start_Click"/>
             <Button Content="Stop" Width="80" Margin="5" Click="Stop_Click"/>
