@@ -98,5 +98,8 @@
   <ItemGroup>
     <Resource Include="docs\QnA.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="docs\TODO.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
